@@ -1,0 +1,56 @@
+// Prisma schema for Digital Executor (Life-Logic Vault and DMS)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String          @id @default(uuid())
+  email          String          @unique
+  fullName       String
+  hashedPassword String          // Standard Auth, NOT the Master Passphrase
+  isActive       Boolean         @default(true)
+  securityStreak Int             @default(0) // Family Security Streak for retention
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  vaults         VaultMetadata[]
+}
+
+model VaultMetadata {
+  id                String       @id @default(uuid())
+  userId            String
+  user              User         @relation(fields: [userId], references: [id])
+  
+  // Storage Location
+  s3BucketPath      String       // Location of the actual large payload in S3
+  
+  // Security (Zero-Knowledge)
+  clientEncryptedData String?    // Opaque ciphertext. Server cannot read this.
+  kmsEncryptedKey     String?    // AWS KMS wrapped key for server-side operations (hybrid approach)
+
+  // DMS Engine State
+  isActive          Boolean      @default(true)
+  lastHeartbeat     DateTime     @default(now())
+  phase             String       @default("HEALTHY") // EscalationPhase enum value
+  releaseGate       String?      // ReleateGate enum value
+  
+  auditLogs         AuditLog[]
+
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+}
+
+model AuditLog {
+  id        String        @id @default(uuid())
+  vaultId   String
+  vault     VaultMetadata @relation(fields: [vaultId], references: [id])
+  eventType String        // e.g., "HEARTBEAT", "ESCALATION", "ACCESS_GRANTED"
+  details   String?
+  timestamp DateTime      @default(now())
+}
