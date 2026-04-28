@@ -10,7 +10,7 @@ A DMS is an automated security mechanism designed to trigger an action only if t
 1. You regularly log in and click "I'm well - Extend timer" (a heartbeat check-in).
 2. If you fail to check in before the timer expires, the backend Escalation Engine assumes you are incapacitated.
 3. The system automatically begins pinging your emergency contacts and progressively unlocking your encrypted instructions (Phase 1 through 4) to ensure a smooth, stress-free handover of your life's logistics.
-
+ 
 ## Core Features ✨
 
 ### 1. Zero-Knowledge Encryption
@@ -28,18 +28,6 @@ A visual dashboard that allows you to monitor your Family Security Streak. If a 
 
 ### 4. 100% Local Development Environment
 The application has been pivoted from a heavy cloud-native architecture (AWS S3, Redis, PostgreSQL) to a lightweight, fully self-contained local environment using **SQLite**, an **In-Memory Redis Mock**, and the **Local File System**. 
-
----
-
-## Visual Interface 📸
-
-| Dashboard Overview | Vault Editor |
-| :---: | :---: |
-| ![Dashboard](docs/ui_photo_1.png) | ![Vault Editor](docs/ui_photo_2.png) |
-
-| Escalation Timeline | Beneficiary Access |
-| :---: | :---: |
-| ![Timeline](docs/ui_photo_3.png) | ![Access](docs/ui_photo_4.png) |
 
 ---
 
