@@ -31,6 +31,18 @@ The application has been pivoted from a heavy cloud-native architecture (AWS S3,
 
 ---
 
+## Visual Interface 📸
+
+| Dashboard Overview | Vault Editor |
+| :---: | :---: |
+| ![Dashboard](docs/ui_photo_1.png) | ![Vault Editor](docs/ui_photo_2.png) |
+
+| Escalation Timeline | Beneficiary Access |
+| :---: | :---: |
+| ![Timeline](docs/ui_photo_3.png) | ![Access](docs/ui_photo_4.png) |
+
+---
+
 ## Tech Stack
 - **Frontend:** Next.js (React), TailwindCSS, Framer Motion, Lucide Icons.
 - **Backend:** Node.js, Express, Prisma ORM, SQLite.
